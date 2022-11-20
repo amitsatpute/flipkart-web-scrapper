@@ -1,0 +1,9 @@
+#Python==3.8.8
+Flask==2.2.2
+Werkzeug==2.2.2
+Flask-Cors==3.0.10
+numpy==1.20.3
+pandas==1.5.1
+pymongo==4.3.3
+selenium
+webdriver-manager==3.8.5

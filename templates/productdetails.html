@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<form action="/productDetails" method="POST">
+    <div class="jumbotron text-center">
+        <h2>Review Scrapper!</h2>
+        <br>
+        <a href="/artifact/flipkart_scrapper_data/flipkart_product_review.csv" download="flipkart_product_review.csv">Download your search result from here after the result display on page.</a>
+
+    </div>
+
+
+    <div class="container">
+
+        <h1 class="text-center">Flipkart</h1>
+        <hr>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4">
+                <a class="btn btn-success" href={{f_data['product_link']}} target="_blank">Flipkart Link</a>
+                <br><br>
+                <img src={{f_data['product_image']}} class="img-thumbnail" alt={{f_data['product_name']}}
+                     width="300" height="400">
+            </div>
+            <div class="col-sm-6">
+                <h4>{{f_data['product_name']}}</h4>
+                <h3>{{f_data['product_price']}}</h3>
+                <p>
+                    <del>{{f_data['original_price']}}</del>
+                </p>
+                <p>{{f_data['discount_percentage']}}</p>
+                <h3>Offers</h3>
+                {% for offer in f_data['product_offers'] %}
+                <ul>
+                    <li>{{offer}}</li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+
+        <h3>Comments</h3>
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+                <th>Rating</th>
+                <th>Comment Header</th>
+                <th>Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in f_data['comments'] %}
+            <tr>
+                <td>
+                    {{comment['rating']}}
+                </td>
+                <td>
+                    {{comment['comment_header']}}
+                </td>
+                <td>
+                    {{comment['comment']}}
+                </td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</form>
+</body>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+</html>

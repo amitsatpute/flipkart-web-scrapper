@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        img{
+        width: 150px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#checkBtn').click(function() {
+      checked = $("input[type=radio]:checked").length;
+
+      if(checked != 1) {
+        alert("You must check radio button from the list.");
+        return false;
+      }
+
+    });
+});
+
+
+</script>
+
+<form action="/productDetails" method="POST">
+    <div class="jumbotron text-center">
+        <h2>Review Scrapper!</h2>
+        <a href="/artifact/flipkart_scrapper_data/products_list.csv" download="products_list.csv">Download your search result from here after the result display on page.</a>
+        <!--input type="button" onclick="location.href='/static/scrapper_data.csv'; download='scrapper_data.csv'; " value="Download" /-->
+        <br><br>
+        <label><b>Enter the expected review count you need:</b></label> <input type="text" name="expected_review" id="expected_review" placeholder="10" value="10">
+        <input type="submit" value="Search" class="btn btn-primary" id="checkBtn">
+    </div>
+
+
+    <div class="container">
+
+        <h1 class="text-center">Flipkart</h1>
+        <hr>
+
+        {% for f in f_data %}
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-1"><input type="radio" name="flipkartProductDetailLink" id="flipkartProductDetailLink"
+                                         value={{f["product_link"]}}></div>
+            <div class="col-sm-2"><img src={{f['product_image']}} class="image-card img-fluid img-thumbnail"
+                                       alt={{f['product_name']}}
+                                       width="300" height="400"></div>
+            <div class="col-sm-5">
+                <h4>{{f['product_name']}}</h4>
+
+                <h4>{{f['product_price']}}</h4>
+
+                <p>
+                    <del>{{f['original_price']}}</del>
+                    <span>{{f['discount_percentage']}}</span></p>
+                <p>{{f['product_offer']}}</p>
+                <a href={{f['product_link']}}> Link </a>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</form>
+</body>
+</html>
