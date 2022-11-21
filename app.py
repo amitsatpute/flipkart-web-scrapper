@@ -1,7 +1,14 @@
 # doing necessary imports
 from flask import Flask, render_template, request
+
+"""WebDriver drives a browser natively, as a user would, 
+either locally or on a remote machine using the Selenium server, 
+marks a leap forward in terms of browser automation."""
 from selenium import webdriver
 from flipkart_scrapping import FlipkratScrapper
+
+# ChromeDriver is a separate executable that Selenium WebDriver uses to control Chrome. 
+# It is maintained by the Chromium team with help from WebDriver contributors.
 from webdriver_manager.chrome import ChromeDriverManager
 from logger import getLog
 from exception import ScrapperException

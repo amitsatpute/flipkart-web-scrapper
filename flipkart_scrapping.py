@@ -20,16 +20,6 @@ class FlipkratScrapper:
             self.driver = webdriver.Chrome(executable_path=executable_path, chrome_options=chrome_options)
         except Exception as e:
             raise ScrapperException(e, sys)
-    
-    def getCurrentWindowUrl(self):
-        """
-        This function returns the url of current window
-        """
-        try:
-            current_window_url = self.driver.current_url
-            return current_window_url
-        except Exception as e:
-            raise ScrapperException(e, sys)
 
     def getLocatorsObject(self):
         """

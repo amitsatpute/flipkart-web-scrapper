@@ -185,26 +185,6 @@ class MongoDBManagement:
         except Exception as e:
             raise ScrapperException(e, sys)
 
-    def insertRecords(self, db_name, collection_name, records):
-        """
-        This inserts a record.
-        :param db_name:
-        :param collection_name:
-        :param record:
-        :return:
-        """
-        try:
-            # collection_check_status = self.isCollectionPresent(collection_name=collection_name,db_name=db_name)
-            # print(collection_check_status)
-            # if collection_check_status:
-            collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-            record = list(records.values())
-            collection.insert_many(record)
-            sum = 0
-            return f"rows inserted "
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
     def findfirstRecord(self, db_name, collection_name,query=None):
         """
         """
@@ -216,30 +196,6 @@ class MongoDBManagement:
                 #print(collection)
                 firstRecord = collection.find_one(query)
                 return firstRecord
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def findAllRecords(self, db_name, collection_name):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            if collection_check_status:
-                collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-                findAllRecords = collection.find()
-                return findAllRecords
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def findRecordOnQuery(self, db_name, collection_name, query):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            if collection_check_status:
-                collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-                findRecords = collection.find(query)
-                return findRecords
         except Exception as e:
             raise ScrapperException(e, sys)
 
@@ -255,78 +211,4 @@ class MongoDBManagement:
         except Exception as e:
             raise ScrapperException(e, sys)
 
-    def updateMultipleRecord(self, db_name, collection_name, query):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            if collection_check_status:
-                collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-                previous_records = self.findAllRecords(db_name=db_name, collection_name=collection_name)
-                new_records = query
-                updated_records = collection.update_many(previous_records, new_records)
-                return updated_records
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def deleteRecord(self, db_name, collection_name, query):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            if collection_check_status:
-                collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-                collection.delete_one(query)
-                return "1 row deleted"
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def deleteRecords(self, db_name, collection_name, query):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            if collection_check_status:
-                collection = self.getCollection(collection_name=collection_name, db_name=db_name)
-                collection.delete_many(query)
-                return "Multiple rows deleted"
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def getDataFrameOfCollection(self, db_name, collection_name):
-        """
-        """
-        try:
-            all_Records = self.findAllRecords(collection_name=collection_name, db_name=db_name)
-            dataframe = pd.DataFrame(all_Records)
-            return dataframe
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def saveDataFrameIntoCollection(self, collection_name, db_name, dataframe):
-        """
-        """
-        try:
-            collection_check_status = self.isCollectionPresent(collection_name=collection_name, db_name=db_name)
-            dataframe_dict = json.loads(dataframe.T.to_json())
-            if collection_check_status:
-                self.insertRecords(collection_name=collection_name, db_name=db_name, records=dataframe_dict)
-                return "Inserted"
-            else:
-                self.createDatabase(db_name=db_name)
-                self.createCollection(collection_name=collection_name, db_name=db_name)
-                self.insertRecords(db_name=db_name, collection_name=collection_name, records=dataframe_dict)
-                return "Inserted"
-        except Exception as e:
-            raise ScrapperException(e, sys)
-
-    def getResultToDisplayOnBrowser(self, db_name, collection_name):
-        """
-        This function returns the final result to display on browser.
-        """
-        try:
-            response = self.findAllRecords(db_name=db_name, collection_name=collection_name)
-            result = [i for i in response]
-            return result
-        except Exception as e:
-            raise ScrapperException(e, sys)
+    
