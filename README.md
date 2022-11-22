@@ -10,7 +10,13 @@ This is web scrapping project. Which scrapping the data about product from flipk
 ![image](https://user-images.githubusercontent.com/24702773/203055006-6667ef39-6734-4f16-849a-73708a93dc92.png)
 
 
-How to run?
+# Tech Stack Used
+1. Python 
+2. Selenium 
+3. MongoDB
+
+
+# How to run?
 
 # Step 1: Clone the repository
 git clone https://github.com/amitsatpute/flipkart-web-scrapper.git
@@ -27,3 +33,16 @@ Goto constant folder then env_variable.py file there put your MONGODB URL
 
 # Step 5 - Run the application server
 python app.py
+
+
+## Demo
+
+# Landing Page
+![image](https://user-images.githubusercontent.com/24702773/203227262-35861dde-d97b-47fc-b8a4-39bf36435ce4.png)
+
+# Product list page
+![image](https://user-images.githubusercontent.com/24702773/203227470-cc07c983-8319-4b89-bc4f-e7e3654e99fa.png)
+
+# Product Review page
+![image](https://user-images.githubusercontent.com/24702773/203228993-c02e7e6a-fb6b-45cc-961b-6b7bb3c1a079.png)
+
