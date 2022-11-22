@@ -18,31 +18,31 @@ This is web scrapping project. Which scrapping the data about product from flipk
 
 # How to run?
 
-# Step 1: Clone the repository
+## Step 1: Clone the repository
 git clone https://github.com/amitsatpute/flipkart-web-scrapper.git
 
-# Step 2- Create a conda environment after opening the repository
+## Step 2- Create a conda environment after opening the repository
 conda create -n scrapper python=3.9.0 -y
 conda activate scrapper
 
-# Step 3 - Install the requirements
+## Step 3 - Install the requirements
 pip install -r requirements.txt
 
-# step 4 - setup the MONGODB URL
+## step 4 - setup the MONGODB URL
 Goto constant folder then env_variable.py file there put your MONGODB URL
 
-# Step 5 - Run the application server
+## Step 5 - Run the application server
 python app.py
 
 
-## Demo
+# Demo
 
-# Landing Page
+## Landing Page
 ![image](https://user-images.githubusercontent.com/24702773/203227262-35861dde-d97b-47fc-b8a4-39bf36435ce4.png)
 
-# Product list page
+## Product list page
 ![image](https://user-images.githubusercontent.com/24702773/203227470-cc07c983-8319-4b89-bc4f-e7e3654e99fa.png)
 
-# Product Review page
+## Product Review page
 ![image](https://user-images.githubusercontent.com/24702773/203228993-c02e7e6a-fb6b-45cc-961b-6b7bb3c1a079.png)
 
